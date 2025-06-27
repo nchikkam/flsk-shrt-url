@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Flask API for URL Shortener</title>
+
+    <style>
+
+        logo {
+            font: 900 49px asap,arial;
+            color: #0186da;
+            letter-spacing: -1px;
+            text-shadow: 0 1px 2px #ddd;
+            word-wrap: break-word;
+        }
+
+        main {
+            display: block;
+            margin: 0 auto 0 auto;
+            padding: 0 20px;
+            max-width: fit-content;
+        }
+
+        body {
+            font: 14px asap,arial;
+        }
+
+        p {
+            font: 17px "source sans pro",arial;
+            line-height: normal;
+            color: #656896;
+            line-height: 1.5;
+            text-align: left;
+            padding: 0 0 0 2px;
+        }
+
+        table, th, td {
+            border: 1px solid #9da1d1;
+            border-collapse: collapse;
+            color:rgb(77, 112, 160);
+        }
+        
+    </style>
+</head>
+<body>
+    <div style="margin: 0px auto;">
+        <main>
+            <section id="urlbox">
+                <div class="logo">
+                <h1>Flask Alchemy Based Simple URL Shortner</h1>
+
+                 <form action="/" method="POST">
+                    <input type="text" name="original_link" size="50"/>
+                    <input type="submit" value="Shorten URL"></input>
+                </form>
+                </div>
+            </section>
+
+        <section id="content">
+            <h3>Versions</h3>
+            <hr/>
+            {% for module, version in versions.items() %}
+                <p>{{ module}} : {{ version }}</p>
+            {% endfor %}
+
+            <h3>Entries</h3>
+            <hr/>
+            <br/>
+            <table >
+                <thead>
+                    <tr>
+                        <th>Slug</th>
+                        <th>Original URL</th>
+                        <th>ShortUrl</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entry in entries %}
+                    <tr>
+                        <td>{{ entry.short_url }}</td>
+                        <td>{{ entry.original_url }}</td>
+                        <td style="text-align: right;">
+                            <a href="./{{entry.short_url}}" target="_blank">link</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+    </div>
+</body>
+</html>
